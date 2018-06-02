@@ -18,39 +18,71 @@
 </style>
 <script src="Scripts/angular.min.js"></script>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><h1>Datapeace</h1></a>
-            </div>
-    </nav>
-    <div ng-app="myApp" ng-controller="customersCtrl">
+    <mdb-navbar SideClass="navbar navbar-dark indigo">
+        <logo><a class="navbar-brand" href="#"><h1>Datapeace</h1></a></logo>
+    </mdb-navbar>    <div ng-app="myApp" ng-controller="customersCtrl">
+  <p style="color:red">SEARCH</p> 
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-        <table>
-            <tr ng-repeat="x in names">
-                <td>{{ x.id }}</td>
-                <td>{{ x.first_name }}</td>
-                <td>{{ x.last_name }}</td>
-                <td>{{ x.company_name }}</td>
-                <td>{{ x.city }}</td>
-                <td>{{ x.state }}</td>
-                <td>{{ x.zip}}</td>
-                <td>{{ x.email}}</td>
-                <td>{{ x.web}}</td>
-                <td>{{ x.age}}</td>
+    <table id="we">
+        <td>Id</td>
+        <td><h1>F-name</h1></td>
+        <td><h1>L-name</h1></td>
+        <td><h1>company-name</h1></td>
+        <td><h1>Country</h1></td>
+        <td><h1>State</h1></td>
+        <td><h1>zip</h1></td>
+        <td><h1>Email</h1></td>
+        <td><h1>Web</h1></td>
+        <td><h1>Age</h1></td>
+        <tr ng-repeat="x in names">
 
-            </tr>
-        </table>
+            <td>{{ x.id }}</td>
+            <td>{{ x.first_name }}</td>
+            <td>{{ x.last_name }}</td>
+            <td>{{ x.company_name }}</td>
+            <td>{{ x.city }}</td>
+            <td>{{ x.state }}</td>
+            <td>{{ x.zip}}</td>
+            <td>{{ x.email}}</td>
+            <td>{{ x.web}}</td>
+            <td>{{ x.age}}</td>
 
-    </div>
+        </tr>
+    </table>
 
+</div>
+   
     <script>
         var app = angular.module('myApp', []);
         app.controller('customersCtrl', function ($scope, $http) {
             $http.get("json.json")
                 .then(function (response) { $scope.names = response.data.records; });
         });
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("we");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     </script>
+
+
+
+
+
+
     <ul class="pagination">
         <li><a href="HtmlPage.html">1</a></li>
         <li><a href="HtmlPage2.html">2</a></li>

@@ -24,9 +24,22 @@
                 <a class="navbar-brand" href="HtmlPage.html"><h1>Back</h1></a>
             </div>
     </nav>
+    <p style="color:red">SEARCH</p>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
     <div ng-app="myApp" ng-controller="customersCtrl">
 
-        <table>
+        <table id="we">
+            <td>Id</td>
+            <td><h1>F-name</h1></td>
+            <td><h1>L-name</h1></td>
+            <td><h1>company-name</h1></td>
+            <td><h1>Country</h1></td>
+            <td><h1>State</h1></td>
+            <td><h1>zip</h1></td>
+            <td><h1>Email</h1></td>
+            <td><h1>Web</h1></td>
+            <td><h1>Age</h1></td>
             <tr ng-repeat="x in names">
                 <td>{{ x.id }}</td>
                 <td>{{ x.first_name }}</td>
@@ -50,6 +63,23 @@
             $http.get("json5.json")
                 .then(function (response) { $scope.names = response.data.data5; });
         });
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("we");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     </script>
     <ul class="pagination">
         <li><a href="HtmlPage.html">1</a></li>
