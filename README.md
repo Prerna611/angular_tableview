@@ -7,4 +7,5 @@ On Terminal run :
  npm install
 
  npm start
+
 Project runs on : http://localhost:58553/src
