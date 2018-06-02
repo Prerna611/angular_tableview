@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <style>
-   
+
     table, th, td {
         border: 1px solid grey;
         border-collapse: collapse;
@@ -21,7 +21,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><h1>Datapeace</h1></a>
+                <a class="navbar-brand" href="HtmlPage.html"><h1>Back</h1></a>
             </div>
     </nav>
     <div ng-app="myApp" ng-controller="customersCtrl">
@@ -47,8 +47,8 @@
     <script>
         var app = angular.module('myApp', []);
         app.controller('customersCtrl', function ($scope, $http) {
-            $http.get("json.json")
-                .then(function (response) { $scope.names = response.data.records; });
+            $http.get("json5.json")
+                .then(function (response) { $scope.names = response.data.data5; });
         });
     </script>
     <ul class="pagination">
